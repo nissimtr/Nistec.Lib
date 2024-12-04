@@ -33,6 +33,8 @@ using Nistec.Serialization;
 using System.Collections.Specialized;
 using Nistec.Runtime;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
     /// <summary>
@@ -532,8 +534,8 @@ namespace Nistec.Generic
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="field">the column name in data row</param>
+        /// <param name="defaultValue"></param>
         /// <returns>if null or error return defaultValue</returns>
-        /// <returns>T</returns>
         public T GetValue<T>(string field, T defaultValue)
         {
             object value = null;

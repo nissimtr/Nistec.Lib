@@ -29,6 +29,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Config
 {
     public class GenericConfig<T> where T: IConfigurable

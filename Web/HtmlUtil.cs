@@ -4,6 +4,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+#pragma warning disable  CS1591
 
 namespace Nistec.Web
 {
@@ -882,7 +883,7 @@ namespace Nistec.Web
 
         /// <summary>
         /// Moves the current position to the next character that is
-        // not whitespace
+        /// not whitespace
         /// </summary>
         protected void SkipWhitespace()
         {

@@ -26,7 +26,7 @@ using System.Collections;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Reflection;
-
+#pragma warning disable  CS1591
 
 namespace Nistec.Runtime
 {

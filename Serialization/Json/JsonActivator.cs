@@ -29,7 +29,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Text;
-
+#pragma warning disable  CS1591
 namespace Nistec.Serialization
 {
     public delegate string SerializeFunc(object data);

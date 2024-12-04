@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Data;
-
+#pragma warning disable CS1591
 namespace Nistec.Xml
 {
      /// <summary>
@@ -162,6 +162,7 @@ namespace Nistec.Xml
         /// </summary>
         /// <param name="nodeType"></param>
         /// <param name="Name"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
         public XmlNode CreateNode(XmlNodeType nodeType, string Name,string value)
         {

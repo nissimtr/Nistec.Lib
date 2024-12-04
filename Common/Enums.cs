@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+#pragma warning disable  CS1591
 namespace Nistec
 {
     [Flags]
@@ -45,9 +46,8 @@ namespace Nistec
     //    Response
     //}
 
-    /// <summary>
-    /// Message State
-    /// </summary>
+    // Message State
+
     //public enum MessageState
     //{
     //    None = 0,

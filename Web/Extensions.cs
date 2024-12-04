@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Routing;
+#pragma warning disable  CS1591
 
 namespace Nistec.Web
 {

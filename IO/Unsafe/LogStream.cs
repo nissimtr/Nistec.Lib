@@ -30,6 +30,8 @@ using System.Threading;
 using System.IO;
 using System.Text;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO.Unsafe
 {
 

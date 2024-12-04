@@ -35,6 +35,8 @@ using System.Threading.Tasks;
 using Nistec.Serialization;
 using System.Net.NetworkInformation;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
 
@@ -270,19 +272,6 @@ namespace Nistec.Generic
         /// <param name="flags"></param>
         /// <param name="DefaultValue"></param>
         /// <returns></returns>
-        /// <example>
-        ///    string logmode = table.Get("LogMode");
-        ///    LoggerMode modFlags = LoggerMode.None;
-        ///     if (!string.IsNullOrEmpty(logmode))
-        ///     {
-        ///            LoggerMode[] mflags = EnumExtension.GetEnumFlags<LoggerMode>(logmode, LoggerMode.None);
-        ///            foreach (LoggerMode flg in mflags)
-        ///            {
-        ///               modFlags = modFlags | flg;
-        ///            }
-        ///       }
-        ///       LogMode = modFlags;
-        /// </example>
         public static T[] GetEnumFlags<T>(string flags, T DefaultValue)
         {
             if (flags == null)
@@ -293,6 +282,13 @@ namespace Nistec.Generic
             return GetEnumFlags<T>(args, DefaultValue);
         }
 
+        /// <summary>
+        /// GetEnumFlags
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="args"></param>
+        /// <param name="DefaultValue"></param>
+        /// <returns></returns>
         public static T[] GetEnumFlags<T>(string[] args, T DefaultValue)
         {
             if (args == null)
@@ -310,6 +306,9 @@ namespace Nistec.Generic
         }
 
     }
+    /// <summary>
+    /// UUID
+    /// </summary>
     public static class UUID
     {
 
@@ -392,6 +391,10 @@ namespace Nistec.Generic
         #endregion
 
         static string _MacAddress;
+        /// <summary>
+        /// MacAddress
+        /// </summary>
+        /// <returns></returns>
         public static string MacAddress()
         {
             if(_MacAddress==null)
@@ -404,11 +407,18 @@ namespace Nistec.Generic
             }
             return _MacAddress;
         }
+        /// <summary>
+        /// NewUxid
+        /// </summary>
+        /// <returns></returns>
         public static string NewUxid()
         {
             return NewUsid(MacAddress());
         }
-
+        /// <summary>
+        /// NewUuid
+        /// </summary>
+        /// <returns></returns>
         public static Guid NewUuid()
         {
 
@@ -419,28 +429,48 @@ namespace Nistec.Generic
             else
                 return Guid.NewGuid();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string Identifier()
         {
             Guid guid = NewUuid();
             return Strings.StrReverse(BaseConverter.ToBase32String(guid.ToByteArray())).ToLower();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="generatorId"></param>
+        /// <returns></returns>
         public static string NewUsid(string generatorId)
         {
             Guid guid= NewUuid();
             return Strings.StrReverse(BaseConverter.ToBase32String(guid.ToByteArray())) + generatorId;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="c"></param>
         public static void SetGenerator(byte a, byte b, byte c)
         {
             GENERATORID = string.Format("{0}{1}{2}", a, b, c);
         }
         internal static string GENERATORID = "000";
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string NewUsid()
         {
             return NewUsid(GENERATORID);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static string GuidSegment()
         {
             return NewUuid().ToString().Split('-')[0];
@@ -475,7 +505,9 @@ namespace Nistec.Generic
         #endregion
 
     }
-    
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DictionaryExtension
     {
  
@@ -677,7 +709,12 @@ namespace Nistec.Generic
         }
 
         #endregion
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="de"></param>
+        /// <returns></returns>
         public static T Cast<T>(this IDictionary<string, object> de)
         {
             T entity = ActivatorUtil.CreateInstance<T>();
@@ -705,7 +742,13 @@ namespace Nistec.Generic
                 return entity;
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="original"></param>
+        /// <returns></returns>
         public static Dictionary<TKey, TValue> CloneDictionary<TKey, TValue> (this Dictionary<TKey, TValue> original) where TValue : ICloneable
         {
             Dictionary<TKey, TValue> ret = new Dictionary<TKey, TValue>(original.Count, original.Comparer);
@@ -715,7 +758,13 @@ namespace Nistec.Generic
             }
             return ret;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="qs"></param>
+        /// <param name="enableNull"></param>
+        /// <returns></returns>
         public static Dictionary<string, T> ParseQueryString<T>(string qs, bool enableNull)
         {
             Dictionary<string, T> dictionary = new Dictionary<string, T>();
@@ -758,18 +807,39 @@ namespace Nistec.Generic
             return dictionary;
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public static class KeyValueExtension
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nv"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string Get(this NameValueArgs nv, string key)
         {
             return nv.Get(key);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="nv"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static string Get<T>(this NameValueArgs<T> nv, string key)
         {
             return nv.Get<T>(key);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueArray"></param>
+        /// <param name="keyToFind"></param>
+        /// <param name="matchTo"></param>
+        /// <returns></returns>
         public static bool IsMatch(this object[] keyValueArray, string keyToFind, object matchTo)
         {
             if (keyValueArray == null || keyToFind == null || matchTo == null)
@@ -781,6 +851,13 @@ namespace Nistec.Generic
             }
             return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueArray"></param>
+        /// <param name="keyToFind"></param>
+        /// <param name="matchTo"></param>
+        /// <returns></returns>
         public static bool IsMatch(this object[] keyValueArray, string keyToFind, string matchTo)
         {
             if (keyValueArray == null || keyToFind == null || matchTo == null)
@@ -794,6 +871,14 @@ namespace Nistec.Generic
             }
             return false;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyValueArray"></param>
+        /// <param name="keyToFind"></param>
+        /// <param name="matchTo"></param>
+        /// <returns></returns>
         public static bool IsMatch<T>(this object[] keyValueArray, string keyToFind, T matchTo)
         {
             if (keyValueArray == null || keyToFind == null || matchTo == null)
@@ -805,7 +890,13 @@ namespace Nistec.Generic
             }
             return false;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueArray"></param>
+        /// <param name="key"></param>
+        /// <param name="defaulValue"></param>
+        /// <returns></returns>
         public static object FindValue(this object[] keyValueArray, string key, object defaulValue=null)
         {
             if (keyValueArray == null || key == null)
@@ -815,6 +906,14 @@ namespace Nistec.Generic
                 return keyValueArray[i + 1];
             return defaulValue;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="keyValueArray"></param>
+        /// <param name="key"></param>
+        /// <param name="defaulValue"></param>
+        /// <returns></returns>
         public static T FindValue<T>(this object[] keyValueArray, string key, T defaulValue = default(T))
         {
             if (keyValueArray == null || key == null)
@@ -824,7 +923,13 @@ namespace Nistec.Generic
                 return GenericTypes.Convert<T>(keyValueArray[i + 1]);
             return defaulValue;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueArray"></param>
+        /// <param name="key"></param>
+        /// <param name="defaulValue"></param>
+        /// <returns></returns>
         public static string FindValue(this string[] keyValueArray, string key, string defaulValue = null)
         {
             if (keyValueArray == null || key == null)
@@ -911,6 +1016,12 @@ namespace Nistec.Generic
         //    _output.Append("}");
         //    return _output.ToString();
         //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance"></param>
+        /// <param name="dr"></param>
         public static void ToKeyValue<T>(this IKeyValue<T> instance, DataRow dr)
         {
             if (dr == null)
@@ -925,6 +1036,11 @@ namespace Nistec.Generic
                 instance[colName] = GenericTypes.Convert<T>(dr[colName]);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="dr"></param>
         public static void ToNameValue(this INameValue instance, DataRow dr)
         {
             if (dr == null)
@@ -939,6 +1055,12 @@ namespace Nistec.Generic
                 instance[colName] = GenericTypes.NZ(dr[colName], "");
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance"></param>
+        /// <param name="dr"></param>
         public static void ToNameValue<T>(this NameValueArgs<T> instance, DataRow dr)
         {
             if (dr == null)
@@ -953,6 +1075,13 @@ namespace Nistec.Generic
                 instance[colName] = GenericTypes.Convert<T>(dr[colName], default(T));
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="instance"></param>
+        /// <param name="dt"></param>
+        /// <param name="colKey"></param>
+        /// <param name="colValue"></param>
         public static void ToNameValue(this INameValue instance, DataTable dt, string colKey=null, string colValue = null)
         {
             if (dt == null)
@@ -975,7 +1104,13 @@ namespace Nistec.Generic
                 instance[key] = GenericTypes.NZ(dr[colValue], "");
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <param name="colKey"></param>
+        /// <param name="colValue"></param>
+        /// <returns></returns>
         public static INameValue ToNameValue(this DataTable dt, string colKey = null, string colValue = null)
         {
             if (dt == null)
@@ -998,7 +1133,13 @@ namespace Nistec.Generic
             }
             return instance;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="kv"></param>
+        /// <param name="key"></param>
+        /// <param name="valueIfNull"></param>
+        /// <returns></returns>
         public static string[] SplitArg(this IKeyValue kv, string key, string valueIfNull)
         {
             string val = kv.Get<string>(key, valueIfNull);
@@ -1007,13 +1148,26 @@ namespace Nistec.Generic
             return val.SplitTrim('|');
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="kv"></param>
+        /// <param name="key"></param>
+        /// <param name="valueIfNull"></param>
+        /// <returns></returns>
         public static TimeSpan TimeArg(this IKeyValue kv, string key, string valueIfNull)
         {
             string val = kv.Get<string>(key, valueIfNull);
             TimeSpan time = string.IsNullOrEmpty(val) ? TimeSpan.Zero : TimeSpan.Parse(val);
             return time;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <param name="key"></param>
+        /// <param name="valueIfNull"></param>
+        /// <returns></returns>
         public static string[] SplitArg(this NameValueArgs dic, string key, string valueIfNull)
         {
             string val = dic.Get<string>(key, valueIfNull);
@@ -1021,7 +1175,13 @@ namespace Nistec.Generic
                 return valueIfNull == null ? null : new string[] { valueIfNull };
             return val.SplitTrim('|');
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <param name="key"></param>
+        /// <param name="valueIfNull"></param>
+        /// <returns></returns>
         public static TimeSpan TimeArg(this NameValueArgs dic, string key, string valueIfNull)
         {
             string val = dic.Get<string>(key, valueIfNull);
@@ -1029,9 +1189,16 @@ namespace Nistec.Generic
             return time;
         }
     }
+    /// <summary>
+    /// 
+    /// </summary>
     public static class CollectionExtension
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static string ToQueryString(this NameValueCollection args)
         {
             StringBuilder sb = new StringBuilder();
@@ -1043,6 +1210,11 @@ namespace Nistec.Generic
             }
             return sb.ToString().TrimEnd('&');
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static object[] ToNameValue(this NameValueCollection args)
         {
             List<object> o = new List<object>();
@@ -1054,16 +1226,37 @@ namespace Nistec.Generic
             }
             return o.ToArray();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="nv"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static T Get<T>(this NameValueCollection nv, string key)
         {
             return GenericTypes.Convert<T>(nv[key]);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="nv"></param>
+        /// <param name="key"></param>
+        /// <param name="valueIfNull"></param>
+        /// <returns></returns>
         public static T Get<T>(this NameValueCollection nv, string key, T valueIfNull)
         {
             return GenericTypes.Convert<T>(nv[key], valueIfNull);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="nv"></param>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public static T GetEnum<T>(this NameValueCollection nv, string key, T defaultValue)
         {
             string value = nv[key];
@@ -1078,6 +1271,16 @@ namespace Nistec.Generic
             }
             return EnumExtension.Parse<T>(value.ToString(), defaultValue);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="nv"></param>
+        /// <param name="key"></param>
+        /// <param name="minValue"></param>
+        /// <param name="maxValue"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public static T Get<T>(this NameValueCollection nv, string key, T minValue, T maxValue, T defaultValue)
         {
             T result = GenericTypes.Convert<T>(nv[key], defaultValue);
@@ -1086,9 +1289,16 @@ namespace Nistec.Generic
             return result;
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class KeyValueUtil
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueParameters"></param>
+        /// <returns></returns>
         public static string KeyValueToQueryString(params string[] keyValueParameters)
         {
             StringBuilder sb = new StringBuilder();
@@ -1107,7 +1317,11 @@ namespace Nistec.Generic
             }
             return sb.ToString().TrimEnd('&');
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueParameters"></param>
+        /// <returns></returns>
         public static NameValueCollection KeyValueToNameValue(params string[] keyValueParameters)
         {
             NameValueCollection dic = new NameValueCollection();
@@ -1127,7 +1341,13 @@ namespace Nistec.Generic
 
             return dic;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="splitterList"></param>
+        /// <param name="spliterKeyValue"></param>
+        /// <returns></returns>
         public static NameValueCollection ParseCommaString(string s, char splitterList='|', char spliterKeyValue='=')
         {
             NameValueCollection dic = new NameValueCollection();
@@ -1144,7 +1364,11 @@ namespace Nistec.Generic
 
             return dic;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static NameValueCollection ParseCommaPipe(string s)
         {
             NameValueCollection dic = new NameValueCollection();
@@ -1161,7 +1385,11 @@ namespace Nistec.Generic
 
             return dic;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueParameters"></param>
+        /// <returns></returns>
         public static IDictionary<string,object> KeyValueToDictionary(params object[] keyValueParameters)
         {
             IDictionary<string, object> dic = new Dictionary<string, object>();
@@ -1181,6 +1409,11 @@ namespace Nistec.Generic
 
             return dic;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueParameters"></param>
+        /// <returns></returns>
         public static IDictionary<string, string> KeyValueToDictionaryString(params string[] keyValueParameters)
         {
             IDictionary<string, string> dic = new Dictionary<string, string>();
@@ -1201,9 +1434,18 @@ namespace Nistec.Generic
             return dic;
         }
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class DictionaryUtil
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="initialCapacity"></param>
+        /// <returns></returns>
         public static ConcurrentDictionary<TKey, TValue> CreateConcurrentDictionary<TKey, TValue>(int initialCapacity = 101)
         {
             // We know how many items we want to insert into the ConcurrentDictionary.
@@ -1222,7 +1464,13 @@ namespace Nistec.Generic
             return new ConcurrentDictionary<TKey, TValue>(concurrencyLevel, initialCapacity);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="name"></param>
+        /// <param name="allowReadOnly"></param>
+        /// <returns></returns>
         public static object ToDictionaryOrObject(object source, string name, bool allowReadOnly = false)
         {
             if (source == null)
@@ -1252,7 +1500,13 @@ namespace Nistec.Generic
             SerializeTools.MapToDictionary(dictionary, source, name);
             return dictionary;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="name"></param>
+        /// <param name="allowReadOnly"></param>
+        /// <returns></returns>
         public static IDictionary<string, object> ToDictionary(object source, string name, bool allowReadOnly = false)
         {
             if (source == null)
@@ -1355,7 +1609,15 @@ namespace Nistec.Generic
         //        }
         //    }
         //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="itemsToSync"></param>
+        /// <param name="removeNonExists"></param>
+        /// <param name="logAction"></param>
         public void Synchronize<TKey, TValue>(IDictionary<TKey, TValue> source, IDictionary<TKey, TValue> itemsToSync, bool removeNonExists, Action<string> logAction)
         {
             object osync = new Object();
@@ -1399,6 +1661,15 @@ namespace Nistec.Generic
                 };
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="itemsToSync"></param>
+        /// <param name="removeNonExists"></param>
+        /// <param name="logAction"></param>
         public void SynchronizeParallel<TKey, TValue>(Dictionary<TKey, TValue> source, Dictionary<TKey, TValue> itemsToSync, bool removeNonExists, Action<string> logAction)
         {
 
@@ -1444,7 +1715,15 @@ namespace Nistec.Generic
             }
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="itemsToSync"></param>
+        /// <param name="removeNonExists"></param>
+        /// <param name="logAction"></param>
         public void SynchronizeParallel<TKey, TValue>(ConcurrentDictionary<TKey, TValue> source, ConcurrentDictionary<TKey, TValue> itemsToSync, bool removeNonExists, Action<string> logAction)
         {
 

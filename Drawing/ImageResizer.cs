@@ -10,6 +10,9 @@ using System.Web;
 
 namespace Nistec.Drawing
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ImageResizer
     {
 
@@ -88,7 +91,13 @@ namespace Nistec.Drawing
         //    readStream.Close();
         //    writeStream.Close();
         //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <returns></returns>
         public static int ImageRatio(string filename, ref int width, ref int height)
         {
             System.Drawing.Image img;
@@ -150,7 +159,11 @@ namespace Nistec.Drawing
 
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputStream"></param>
+        /// <returns></returns>
         public static long GetImageSize(Stream inputStream)
         {
             long size = 0;
@@ -160,11 +173,26 @@ namespace Nistec.Drawing
             }
             return size;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="postedFile"></param>
+        /// <param name="sourceFilename"></param>
+        /// <param name="newfilename"></param>
+        /// <param name="maxBytes"></param>
+        /// <param name="deleteSource"></param>
         public static void Save(HttpPostedFileBase postedFile,string sourceFilename, string newfilename, long maxBytes, bool deleteSource)
         {
             Save(postedFile.InputStream, sourceFilename, newfilename, maxBytes, deleteSource);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inputStream"></param>
+        /// <param name="sourceFilename"></param>
+        /// <param name="newfilename"></param>
+        /// <param name="maxBytes"></param>
+        /// <param name="deleteSource"></param>
         public static void Save(Stream inputStream, string sourceFilename, string newfilename, long maxBytes, bool deleteSource)
         {
             if (maxBytes <= 0)
@@ -196,7 +224,13 @@ namespace Nistec.Drawing
             if (deleteSource)
                 File.Delete(sourceFilename);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceFilename"></param>
+        /// <param name="newfilename"></param>
+        /// <param name="maxWidth"></param>
+        /// <param name="deleteSource"></param>
         public static void Save(string sourceFilename, string newfilename, int maxWidth, bool deleteSource)
         {
             if (maxWidth <= 0)
@@ -255,7 +289,13 @@ namespace Nistec.Drawing
                 File.Delete(sourceFilename);
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="newfilename"></param>
+        /// <param name="img_width"></param>
+        /// <param name="img_height"></param>
         private static void ImageResize(System.Drawing.Image image, string newfilename, int img_width, int img_height)
         {
 
@@ -308,12 +348,20 @@ namespace Nistec.Drawing
                 throw new Exception("Error convert image: " + ex.Message);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private static bool ThumbnailCallback()
         {
             return false;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="imagePath"></param>
+        /// <param name="filename"></param>
         static void DefaultCompressionPng(Image original, string imagePath, string filename)
         {
             MemoryStream ms = new MemoryStream();
@@ -324,7 +372,12 @@ namespace Nistec.Drawing
             string fileOutPng = Path.Combine(imagePath, filename);
             compressed.Save(fileOutPng, ImageFormat.Png);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="original"></param>
+        /// <param name="imagePath"></param>
+        /// <param name="filename"></param>
         static void VariousQuality(Image original, string imagePath, string filename)
         {
 
@@ -356,7 +409,11 @@ namespace Nistec.Drawing
                 }
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="format"></param>
+        /// <returns></returns>
         public static ImageCodecInfo GetEncoder(ImageFormat format)
         {
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
@@ -370,7 +427,14 @@ namespace Nistec.Drawing
             return null;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceFileName"></param>
+        /// <param name="path"></param>
+        /// <param name="filename"></param>
+        /// <param name="format"></param>
+        /// <param name="quality"></param>
         public static void SaveJpeg(string sourceFileName, string path, string filename, ImageFormat format, int quality)
         {
             using (Bitmap img = new Bitmap(sourceFileName))
@@ -380,7 +444,13 @@ namespace Nistec.Drawing
                 SaveJpeg(output, img, encoder, quality);
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="img"></param>
+        /// <param name="encoder"></param>
+        /// <param name="quality"></param>
         public static void SaveJpeg(string path, Image img, ImageCodecInfo encoder, int quality)
         {
             if (quality < 0 || quality > 100)
@@ -401,7 +471,8 @@ namespace Nistec.Drawing
         /// Saves an image as a jpeg image, with the given quality 
         /// </summary> 
         /// <param name="path">Path to which the image would be saved.</param> 
-        // <param name="quality">An integer from 0 to 100, with 100 being the 
+        /// <param name="img">Image</param> 
+        /// <param name="quality">An integer from 0 to 100, with 100 being the 
         /// highest quality</param> 
         public static void SaveJpeg(string path, Image img, int quality)
         {

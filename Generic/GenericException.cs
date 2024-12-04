@@ -20,7 +20,7 @@
 //licHeader|
 using System;
 using System.Runtime.Serialization;
-
+#pragma warning disable CS1591
 namespace Nistec.Generic
 {
     /// <summary>

@@ -34,6 +34,7 @@ using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Web.UI;
 using System.Net.Mail;
+#pragma warning disable  CS1591
 
 namespace Nistec.Web
 {

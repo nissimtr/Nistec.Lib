@@ -26,6 +26,8 @@ using System.Xml;
 using System.Collections;
 using System.Data;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
     /// <summary>

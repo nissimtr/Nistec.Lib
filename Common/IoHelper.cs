@@ -24,7 +24,7 @@ using System.Threading;
 using System.Collections;
 using System.Diagnostics;
 using System.Linq;
-
+#pragma warning disable  CS1591
 
 namespace Nistec
 {

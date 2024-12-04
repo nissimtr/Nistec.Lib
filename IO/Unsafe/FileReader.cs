@@ -23,7 +23,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.IO;
-
+#pragma warning disable  CS1591
 namespace Nistec.IO.Unsafe
 {
 

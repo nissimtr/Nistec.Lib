@@ -32,7 +32,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 
-
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {

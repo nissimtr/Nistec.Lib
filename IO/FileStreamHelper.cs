@@ -25,6 +25,8 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO
 {
     public class FileStreamHelper

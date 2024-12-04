@@ -28,6 +28,7 @@ using Nistec.IO;
 using System.Data;
 using System.Xml;
 using Nistec.Generic;
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {

@@ -29,6 +29,8 @@ using System.IO;
 using System.Text;
 using System.Linq;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO
 {
 

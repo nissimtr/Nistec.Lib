@@ -26,7 +26,7 @@ using System.ComponentModel;
 using System.IO.IsolatedStorage; 
 using System.Text;
 using System.Xml;
-
+#pragma warning disable  CS1591
 namespace Nistec.Xml
 {
 

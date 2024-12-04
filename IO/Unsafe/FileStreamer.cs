@@ -31,6 +31,8 @@ using System.Transactions;
 using System.Security;
 using System.Security.Permissions;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO.Unsafe
 {
     public class FileStreamer:IDisposable

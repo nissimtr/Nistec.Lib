@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Data;
-
+#pragma warning disable  CS1591
 namespace Nistec.Xml
 {
     /// <summary>

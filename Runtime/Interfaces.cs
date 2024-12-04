@@ -28,6 +28,7 @@ using System.Collections;
 using Nistec.Generic;
 using Nistec.Serialization;
 
+#pragma warning disable  CS1591
 
 namespace Nistec.Runtime
 {

@@ -25,6 +25,8 @@ using System.Text;
 using System.Collections;
 using Nistec.Serialization;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
 

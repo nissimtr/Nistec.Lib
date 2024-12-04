@@ -30,6 +30,7 @@ using Nistec.Generic;
 using Nistec.Xml;
 using System.Collections;
 
+#pragma warning disable  CS1591
 namespace Nistec
 {
     /// <summary>

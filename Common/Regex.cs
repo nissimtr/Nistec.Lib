@@ -24,8 +24,8 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Globalization;
- 
 
+#pragma warning disable CS1591
 namespace Nistec
 { 
 

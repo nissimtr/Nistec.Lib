@@ -28,7 +28,7 @@ using System.Text;
 using System.Xml;
 using System.Text.RegularExpressions;
 using System.Collections;
-
+#pragma warning disable  CS1591
 namespace Nistec.Xml
 {
 

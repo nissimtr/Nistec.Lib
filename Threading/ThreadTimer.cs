@@ -27,7 +27,7 @@ using System.Messaging;
 
 using System.Runtime.InteropServices;
 using System.ComponentModel;
-
+#pragma warning disable CS1591
 namespace Nistec.Threading
 {
     /// <summary>

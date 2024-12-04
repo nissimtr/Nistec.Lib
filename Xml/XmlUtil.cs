@@ -32,7 +32,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.ComponentModel.Design.Serialization;
 using System.Text.RegularExpressions;
-
+#pragma warning disable  CS1591
 namespace Nistec.Xml
 {
 

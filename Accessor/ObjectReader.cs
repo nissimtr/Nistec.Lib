@@ -6,6 +6,8 @@
 
     using static Nistec.FastMember.TypeHelpers;
 //https://github.com/mgravell/fast-member
+
+#pragma warning disable CS1591
 namespace Nistec.FastMember
     {
         /// <summary>

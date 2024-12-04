@@ -30,6 +30,8 @@ using Nistec.Serialization;
 using System.Data;
 using Nistec.Data;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
     /// <summary>
@@ -289,7 +291,7 @@ namespace Nistec.Generic
 
         #region properties
 
-        public string Get(string key)
+        public new string Get(string key)
         {
             return this[key];
         }

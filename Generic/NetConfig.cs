@@ -30,6 +30,7 @@ using System.Web.Configuration;
 using System.Linq;
 using System.Reflection;
 
+#pragma warning disable  CS1591
 
 namespace Nistec.Generic
 {

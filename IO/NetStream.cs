@@ -32,6 +32,8 @@ using System.IO.Pipes;
 using System.Net.Sockets;
 using System.Threading;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO
 {
   
@@ -971,6 +973,7 @@ namespace Nistec.IO
         /// <summary>
         /// Provides support for a System.Diagnostics.Contracts.Contract.
         /// </summary>
+        [Obsolete]
         protected override void ObjectInvariant()
         {
         }

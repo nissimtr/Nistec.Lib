@@ -30,6 +30,7 @@ using System.Collections.Specialized;
 using System.Text;
 using Nistec.Generic;
 using Nistec.Runtime;
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {

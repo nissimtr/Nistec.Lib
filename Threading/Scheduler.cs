@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Nistec.Collections;
+#pragma warning disable  CS1591
 
 namespace Nistec.Threading
 {

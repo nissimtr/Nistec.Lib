@@ -36,6 +36,7 @@ using System.Collections.Specialized;
 using Nistec.Runtime;
 using System.Collections.Concurrent;
 using System.Diagnostics;
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {
@@ -569,7 +570,7 @@ namespace Nistec.Serialization
         {
             return typeof(ISerialEntity).IsAssignableFrom(type);
         }
-         public static bool IsISerialContext(Type type)
+        public static bool IsISerialContext(Type type)
         {
             return typeof(ISerialContext).IsAssignableFrom(type);
         }

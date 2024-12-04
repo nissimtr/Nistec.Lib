@@ -25,6 +25,8 @@ using System.Text;
 using System.Reflection;
 using Nistec.Runtime;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
 

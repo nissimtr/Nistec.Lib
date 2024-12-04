@@ -25,6 +25,8 @@ using System.Text;
 using System.Security;
 using Nistec.Runtime;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO
 {
     public static class StreamExtension
@@ -40,6 +42,7 @@ namespace Nistec.IO
         /// <summary>
         /// Peek a bytes from given offset and return a <see cref="DateTime"/> value.
         /// </summary>
+        /// <param name="stream"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
         public static DateTime PeekDateTime(this NetStream stream, int offset)
@@ -48,11 +51,12 @@ namespace Nistec.IO
 
             return DateTime.FromBinary(g);
         }
-        
-       
+
+
         /// <summary>
         /// Peek a range of bytes from given offset and count.
         /// </summary>
+        /// <param name="stream"></param>
         /// <param name="offset"></param>
         /// <param name="count"></param>
         /// <returns></returns>
@@ -68,6 +72,7 @@ namespace Nistec.IO
         /// <summary>
         /// Peek a range of bytes from given offset and offset+1 for count.
         /// </summary>
+        /// <param name="stream"></param>
         /// <param name="offset"></param>
         /// <param name="length"></param>
         /// <returns></returns>
@@ -95,6 +100,7 @@ namespace Nistec.IO
         /// <summary>
         /// Peek a range of bytes from given offset and count.
         /// </summary>
+        /// <param name="stream"></param>
         /// <param name="offset"></param>
         /// <param name="count"></param>
         /// <returns></returns>
@@ -110,6 +116,7 @@ namespace Nistec.IO
         /// <summary>
         /// Peek a range of bytes from given offset and offset+1 for count.
         /// </summary>
+        /// <param name="stream"></param>
         /// <param name="offset"></param>
         /// <param name="length"></param>
         /// <returns></returns>

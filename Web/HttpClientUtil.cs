@@ -10,6 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Xml;
+#pragma warning disable  CS1591
 
 namespace Nistec.Web
 {

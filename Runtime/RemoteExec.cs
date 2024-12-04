@@ -28,7 +28,7 @@ using System.Security.Policy;
 using System.Collections;
 using System.Threading;
 using System.Text;
-
+#pragma warning disable CS1591
 namespace Nistec.Runtime
 
 {

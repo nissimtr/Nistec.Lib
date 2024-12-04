@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using Nistec;
 using System.Diagnostics;
 using System.Globalization;
+#pragma warning disable  CS1591
 
 namespace Nistec.Runtime
 {
@@ -277,6 +278,7 @@ namespace Nistec.Runtime
         /// </summary>
         /// <param name="args"></param>
         /// <param name="allowEmpty"></param>
+        /// <param name="useDecode"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="Exception"></exception>

@@ -24,7 +24,7 @@ using System.Collections;
 using System.IO;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
-
+#pragma warning disable CS1591
 namespace Nistec.Runtime
 {
 	/// <summary>

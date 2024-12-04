@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml;
 using System.Xml.Schema;
-
+#pragma warning disable CS1591
 namespace Nistec.Xml
 {
     public class XmlValidator

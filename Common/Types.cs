@@ -36,9 +36,10 @@ using System.Collections.Concurrent;
 
 namespace Nistec
 {
- 
+
     #region ObjectExtension
 
+    #pragma warning disable  CS1591
     public static class ObjectExtension
     {
         public static bool IsNull(this Object obj)
@@ -2710,6 +2711,7 @@ namespace Nistec
         /// IsValidMonthDay
         /// </summary>
         /// <param name="date">22/11</param>
+        /// <param name="value">22/11</param>
         /// <returns></returns>
         public static bool IsValidMonthDay(string date, ref int[] value)
         {

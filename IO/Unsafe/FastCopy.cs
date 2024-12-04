@@ -23,6 +23,8 @@
 using System;
 using System.IO;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.IO.Unsafe
 {
     public class FastCopy

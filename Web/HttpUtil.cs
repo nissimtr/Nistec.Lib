@@ -30,7 +30,7 @@ using System.Net.Security;
 
 using System.Security.Cryptography;
 using System.Security.Permissions;
-
+#pragma warning disable  CS1591
 
 namespace Nistec.Web
 {
@@ -113,6 +113,7 @@ namespace Nistec.Web
         /// <summary>
         /// Initialized new instance of HttpRequest class
         /// </summary>
+        /// <param name="url"></param>
         /// <param name="method"></param>
         /// <param name="codePage"></param>
         /// <param name="isXml"></param>

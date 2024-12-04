@@ -30,7 +30,7 @@ using System.ComponentModel;
 using System.Xml.Schema;
 using System.Text.RegularExpressions;
 using Nistec.Runtime;
-
+#pragma warning disable  CS1591
 namespace Nistec.Xml
 {
  

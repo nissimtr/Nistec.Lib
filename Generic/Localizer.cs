@@ -30,6 +30,8 @@ using Nistec.Generic;
 using System.Text.RegularExpressions;
 using System.IO;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
     public static class ResourceExtension

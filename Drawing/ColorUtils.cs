@@ -21,6 +21,8 @@
 using System;
 using System.Drawing;
 
+#pragma warning disable CS1591
+
 namespace Nistec.Drawing
 {
 	/// <summary>

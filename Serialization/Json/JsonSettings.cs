@@ -27,6 +27,7 @@ using System.Collections;
 using System.Data;
 using System.Collections.Specialized;
 using System.Collections.Concurrent;
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {

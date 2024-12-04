@@ -64,12 +64,18 @@ namespace Nistec.Generic
     //    }
 
     //}
-
+    /// <summary>
+    /// 
+    /// </summary>
     [Serializable]
     public class NameValueArgs : Dictionary<string, string>, ISerialEntity, IDataRowAdaptor, ISerialJson, INameValue, IKeyValue<string>
     {
         #region static
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
         public static NameValueArgs Create(params string[] keyValue)
         {
             if (keyValue == null)
@@ -77,7 +83,11 @@ namespace Nistec.Generic
             return new NameValueArgs(keyValue);
         }
                
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
         public static NameValueArgs Convert(IDictionary<string, object> dic)
         {
             if (dic == null)
@@ -94,14 +104,24 @@ namespace Nistec.Generic
         #endregion
 
         #region ctor
-
+        /// <summary>
+        /// 
+        /// </summary>
         public NameValueArgs()
         {
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueList"></param>
         public NameValueArgs(IEnumerable<KeyValuePair<string, string>> keyValueList)
         {
             Load(keyValueList);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bytes"></param>
         public NameValueArgs(byte[] bytes)
         {
             using (MemoryStream ms = new MemoryStream(bytes))
@@ -109,11 +129,18 @@ namespace Nistec.Generic
                 EntityRead(ms, null);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
         public NameValueArgs(NetStream stream)
         {
             EntityRead(stream, null);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
         public NameValueArgs(string[] keyValue)
         {
             Parse(keyValue);
@@ -127,7 +154,11 @@ namespace Nistec.Generic
         //    query.Load(pair);
         //    return query;
         //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
         public NameValueArgs Merge(NameValueArgs keyValue)
         {
             if (keyValue == null)
@@ -138,6 +169,11 @@ namespace Nistec.Generic
             }
             return this;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
         public NameValueArgs Merge(params string[] keyValue)
         {
             if (keyValue == null)
@@ -145,7 +181,10 @@ namespace Nistec.Generic
             Parse(keyValue);
             return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueParameters"></param>
         void Parse(string[] keyValueParameters)
         {
             if (keyValueParameters == null)
@@ -163,6 +202,10 @@ namespace Nistec.Generic
                 this[keyValueParameters[i]] = keyValueParameters[++i];
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dr"></param>
         public virtual void Prepare(DataRow dr)
         {
             this.ToNameValue(dr);
@@ -223,7 +266,11 @@ namespace Nistec.Generic
         #endregion
 
         #region properties
-            
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>        
         public string Get(string key)
         {
             string value;
@@ -231,7 +278,12 @@ namespace Nistec.Generic
             return value;
             //return this[key];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="valueIfNullOrEmpty"></param>
+        /// <returns></returns>
         public string GetVal(string key, string valueIfNullOrEmpty)
         {
             string value;
@@ -239,17 +291,34 @@ namespace Nistec.Generic
             return string.IsNullOrEmpty(value) ? valueIfNullOrEmpty: value;
             //return this[key];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TV"></typeparam>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public TV Get<TV>(string key)
         {
             return GenericTypes.Convert<TV>(this[key]);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TV"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public TV Get<TV>(string key, TV defaultValue)
         {
             return GenericTypes.Convert<TV>(this[key], defaultValue);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="TV"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public TV GetEnum<TV>(string key, TV defaultValue)
         {
             return GenericTypes.ConvertEnum<TV>(this[key], defaultValue);
@@ -272,7 +341,10 @@ namespace Nistec.Generic
         #endregion
 
         #region Loaders
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValues"></param>
         public void AddArgs(params string[] keyValues)
         {
             if (keyValues == null)
@@ -295,15 +367,28 @@ namespace Nistec.Generic
             }
             //return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValues"></param>
         public void Add(params string[] keyValues)
         {
             Parse(keyValues);
         }
-        public virtual void Add(string key, string value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public new virtual void Add(string key, string value)
         {
             base.Add(key, value == null ? null : value.ToString());
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public virtual void Add(string key, object value)
         {
             if (key == null)
@@ -313,6 +398,11 @@ namespace Nistec.Generic
 
             base.Add(key, value == null ? null : value.ToString());
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public virtual void Set(string key, string value)
         {
             if (key == null)
@@ -359,30 +449,60 @@ namespace Nistec.Generic
         #endregion
 
         #region converter
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Contains(string key, string value)
         {
             //return this.Exists(p => p.Key == key && p.Value == value);
             return this.Where(p => p.Key == key && p.Value == value).Count() > 0;
         }
-
-        public new bool Contains(KeyValuePair<string, string> item)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Contains(KeyValuePair<string, string> item)
         {
             return this.Where(p => p.Key == item.Key && p.Value == item.Value).Count() > 0;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public virtual KeyValuePair<string, string> GetItem(string key, string value)
         {
             return this.Where(p => p.Key == key && p.Value == value).FirstOrDefault();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="splitter"></param>
+        /// <returns></returns>
         public string[] SplitTrim(string name, params char[] splitter)
         {
             var val = this[name];
             return val == null ? null : val.SplitTrim(splitter);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string JoinArg(string[] str)
         {
             return string.Join("|", str);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string[] ToKeyValueArray()
         {
             var list = new List<string>();
@@ -394,11 +514,19 @@ namespace Nistec.Generic
             }
             return list.ToArray();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string ToKeyValuePipe()
         {
             string[] val = ToKeyValueArray();
             return JoinArg(val);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, string> ToDictionary()
         {
             //var dict = this
@@ -409,7 +537,10 @@ namespace Nistec.Generic
 
             return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string ToQueryString()
         {
             StringBuilder sb = new StringBuilder();
@@ -419,7 +550,11 @@ namespace Nistec.Generic
             }
             return (sb.Length == 0) ? "" : sb.ToString().TrimEnd('&');
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="qs"></param>
+        /// <param name="cleanAmp"></param>
         public void LoadQueryString(string qs, bool cleanAmp = true)
         {
             if (qs == null)
@@ -460,7 +595,11 @@ namespace Nistec.Generic
         #endregion
 
         #region ParseQueryString
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static string ToQueryString(NameValueArgs args)
         {
             StringBuilder sb = new StringBuilder();
@@ -471,7 +610,11 @@ namespace Nistec.Generic
             }
             return sb.ToString().TrimEnd('&');
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public static NameValueArgs Parse(System.Web.HttpRequest request)
         {
 
@@ -481,7 +624,11 @@ namespace Nistec.Generic
             }
             return ParseRawUrl(request.RawUrl);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static NameValueArgs ParseRawUrl(string url)
         {
 
@@ -503,7 +650,12 @@ namespace Nistec.Generic
         {
             return qs.Replace("&amp;", "&");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="qs"></param>
+        /// <param name="cleanAmp"></param>
+        /// <returns></returns>
         public static NameValueArgs ParseQueryString(string qs, bool cleanAmp = true)
         {
             NameValueArgs dictionary = new NameValueArgs();
@@ -558,7 +710,11 @@ namespace Nistec.Generic
         #endregion
 
         #region  ISerialEntity
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="streamer"></param>
         public void EntityWrite(Stream stream, IBinaryStreamer streamer)
         {
             if (streamer == null)
@@ -567,7 +723,11 @@ namespace Nistec.Generic
             ((BinaryStreamer)streamer).WriteDirectDictionary<string,string>(this);
             streamer.Flush();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="streamer"></param>
         public void EntityRead(Stream stream, IBinaryStreamer streamer)
         {
             if (streamer == null)
@@ -575,7 +735,10 @@ namespace Nistec.Generic
             this.Clear();
             ((BinaryStreamer)streamer).TryReadDirectToDictionary<string, string>(this,false);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public NetStream ToStream()
         {
             NetStream stream = new NetStream();
@@ -586,7 +749,11 @@ namespace Nistec.Generic
         #endregion
 
         #region ISerialJson
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public static NameValueArgs ParseJson(string json)
         {
             if (json == null)
@@ -597,12 +764,21 @@ namespace Nistec.Generic
             nv.EntityRead(json, null);
             return nv;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pretty"></param>
+        /// <returns></returns>
         public string ToJson(bool pretty = false)
         {
             return EntityWrite(new JsonSerializer(JsonSerializerMode.Write, null), pretty);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serializer"></param>
+        /// <param name="pretty"></param>
+        /// <returns></returns>
         public string EntityWrite(IJsonSerializer serializer, bool pretty = false)
         {
             if (serializer == null)
@@ -614,7 +790,12 @@ namespace Nistec.Generic
             }
             return serializer.WriteOutput(pretty);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="serializer"></param>
+        /// <returns></returns>
         public object EntityRead(string json, IJsonSerializer serializer)
         {
             if (serializer == null)
@@ -633,13 +814,21 @@ namespace Nistec.Generic
         #endregion
 
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
 
     [Serializable]
     public class NameValueArgs<T> : Dictionary<string, T>, ISerialEntity, IDataRowAdaptor, ISerialJson, IKeyValue<T>
     {
         #region static
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> Create(string key, T value)
         {
             if (key == null)
@@ -648,14 +837,22 @@ namespace Nistec.Generic
             nv.Add(key, value);
             return nv;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> Create(params object[] keyValue)
         {
             if (keyValue == null)
                 return null;
             return new NameValueArgs<T>(keyValue);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> Convert(IDictionary<string, T> dic)
         {
             if (dic == null)
@@ -672,14 +869,24 @@ namespace Nistec.Generic
         #endregion
 
         #region ctor
-
+        /// <summary>
+        /// 
+        /// </summary>
         public NameValueArgs()
         {
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValueList"></param>
         public NameValueArgs(IEnumerable<KeyValuePair<string, T>> keyValueList)
         {
             Load(keyValueList);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bytes"></param>
         public NameValueArgs(byte[] bytes)
         {
             using (MemoryStream ms = new MemoryStream(bytes))
@@ -687,11 +894,18 @@ namespace Nistec.Generic
                 EntityRead(ms, null);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
         public NameValueArgs(NetStream stream)
         {
             EntityRead(stream, null);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
         public NameValueArgs(object[] keyValue)
         {
             Parse(keyValue);
@@ -705,7 +919,11 @@ namespace Nistec.Generic
         //    query.Load(pair);
         //    return query;
         //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
         public NameValueArgs<T> Merge(NameValueArgs<T> keyValue)
         {
             if (keyValue == null)
@@ -716,6 +934,11 @@ namespace Nistec.Generic
             }
             return this;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
         public NameValueArgs<T> Merge(params object[] keyValue)
         {
             if (keyValue == null)
@@ -723,6 +946,12 @@ namespace Nistec.Generic
             Parse(keyValue);
             return this;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public NameValueArgs<T> Merge(string key, T value)
         {
             if (key == null)
@@ -747,6 +976,10 @@ namespace Nistec.Generic
                 this[keyValueParameters[i].ToString()] = GenericTypes.Convert<T>(keyValueParameters[++i]);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dr"></param>
         public virtual void Prepare(DataRow dr)
         {
             this.ToNameValue(dr);
@@ -807,7 +1040,11 @@ namespace Nistec.Generic
         #endregion
 
         #region properties
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public T Get(string key)
         {
             T value;
@@ -828,12 +1065,22 @@ namespace Nistec.Generic
         //{
         //    return GenericTypes.Convert<T>(this[key]);
         //}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public T Get(string key, T defaultValue)
         {
             return GenericTypes.Convert<T>(this[key], defaultValue);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
         public T GetEnum(string key, T defaultValue)
         {
             return GenericTypes.ConvertEnum<T>(this[key].ToString(), defaultValue);
@@ -856,8 +1103,12 @@ namespace Nistec.Generic
         #endregion
 
         #region Loaders
-
-        public virtual void Add(string key, T value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public new virtual void Add(string key, T value)
         {
             if (key == null)
             {
@@ -866,7 +1117,11 @@ namespace Nistec.Generic
 
             base.Add(key, value);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public virtual void Set(string key, T value)
         {
             if (key == null)
@@ -914,30 +1169,60 @@ namespace Nistec.Generic
         #endregion
 
         #region converter
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool Contains(string key, T value)
         {
             //return this.Exists(p => p.Key == key && p.Value == value);
             return this.Where(p => p.Key == key && p.Value.Equals(value)).Count() > 0;
         }
-
-        public new bool Contains(KeyValuePair<string, T> item)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Contains(KeyValuePair<string, T> item)
         {
             return this.Where(p => p.Key == item.Key && p.Value.Equals(item.Value)).Count() > 0;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public virtual KeyValuePair<string, T> GetItem(string key, T value)
         {
             return this.Where(p => p.Key == key && p.Value.Equals(value)).FirstOrDefault();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="splitter"></param>
+        /// <returns></returns>
         public string[] SplitTrim(string name, params char[] splitter)
         {
             var val = this[name];
             return val == null ? null : val.ToString().SplitTrim(splitter);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static string JoinArg(string[] str)
         {
             return string.Join("|", str);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string[] ToKeyValueArray()
         {
             var list = new List<string>();
@@ -949,11 +1234,19 @@ namespace Nistec.Generic
             }
             return list.ToArray();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string ToKeyValuePipe()
         {
             string[] val = ToKeyValueArray();
             return JoinArg(val);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, T> ToDictionary()
         {
             //var dict = this
@@ -964,7 +1257,10 @@ namespace Nistec.Generic
 
             return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string ToQueryString()
         {
             StringBuilder sb = new StringBuilder();
@@ -974,7 +1270,11 @@ namespace Nistec.Generic
             }
             return (sb.Length == 0) ? "" : sb.ToString().TrimEnd('&');
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="qs"></param>
+        /// <param name="cleanAmp"></param>
         public void LoadQueryString(string qs, bool cleanAmp = true)
         {
             if (qs == null)
@@ -1015,7 +1315,11 @@ namespace Nistec.Generic
         #endregion
 
         #region ParseQueryString
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
+        /// <returns></returns>
         public static string ToQueryString(NameValueArgs<T> args)
         {
             StringBuilder sb = new StringBuilder();
@@ -1026,7 +1330,11 @@ namespace Nistec.Generic
             }
             return sb.ToString().TrimEnd('&');
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> Parse(System.Web.HttpRequest request)
         {
 
@@ -1036,7 +1344,11 @@ namespace Nistec.Generic
             }
             return ParseRawUrl(request.RawUrl);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> ParseRawUrl(string url)
         {
 
@@ -1053,12 +1365,21 @@ namespace Nistec.Generic
 
             return ParseQueryString(qs);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="qs"></param>
+        /// <returns></returns>
         private static string CLeanQueryString(string qs)
         {
             return qs.Replace("&amp;", "&");
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="qs"></param>
+        /// <param name="cleanAmp"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> ParseQueryString(string qs, bool cleanAmp = true)
         {
             NameValueArgs<T> dictionary = new NameValueArgs<T>();
@@ -1113,7 +1434,11 @@ namespace Nistec.Generic
         #endregion
 
         #region  ISerialEntity
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="streamer"></param>
         public void EntityWrite(Stream stream, IBinaryStreamer streamer)
         {
             if (streamer == null)
@@ -1122,7 +1447,11 @@ namespace Nistec.Generic
             ((BinaryStreamer)streamer).WriteDirectDictionary<string, T>(this);
             streamer.Flush();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="streamer"></param>
         public void EntityRead(Stream stream, IBinaryStreamer streamer)
         {
             if (streamer == null)
@@ -1130,7 +1459,10 @@ namespace Nistec.Generic
             this.Clear();
             ((BinaryStreamer)streamer).TryReadDirectToDictionary<string, T>(this, false);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public NetStream ToStream()
         {
             NetStream stream = new NetStream();
@@ -1141,7 +1473,11 @@ namespace Nistec.Generic
         #endregion
 
         #region ISerialJson
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public static NameValueArgs<T> ParseJson(string json)
         {
             if (json == null)
@@ -1152,12 +1488,21 @@ namespace Nistec.Generic
             nv.EntityRead(json, null);
             return nv;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pretty"></param>
+        /// <returns></returns>
         public string ToJson(bool pretty = false)
         {
             return EntityWrite(new JsonSerializer(JsonSerializerMode.Write, null), pretty);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serializer"></param>
+        /// <param name="pretty"></param>
+        /// <returns></returns>
         public string EntityWrite(IJsonSerializer serializer, bool pretty = false)
         {
             if (serializer == null)
@@ -1169,7 +1514,12 @@ namespace Nistec.Generic
             }
             return serializer.WriteOutput(pretty);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="json"></param>
+        /// <param name="serializer"></param>
+        /// <returns></returns>
         public object EntityRead(string json, IJsonSerializer serializer)
         {
             if (serializer == null)

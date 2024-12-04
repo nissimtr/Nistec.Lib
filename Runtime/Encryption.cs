@@ -27,6 +27,7 @@ using System.Collections.Generic;
 using Nistec;
 using System.Diagnostics;
 using System.Globalization;
+#pragma warning disable  CS1591
 
 namespace Nistec.Runtime
 {

@@ -29,6 +29,8 @@ using Nistec.Generic;
 using Nistec.Xml;
 using Nistec.Runtime;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Config
 {
    

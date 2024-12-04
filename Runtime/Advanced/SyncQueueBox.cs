@@ -27,6 +27,7 @@ using Nistec.Threading;
 using System.Collections.Concurrent;
 using System.Threading;
 using Nistec.Generic;
+#pragma warning disable  CS1591
 
 namespace Nistec.Runtime.Advanced
 {

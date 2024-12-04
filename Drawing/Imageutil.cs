@@ -28,9 +28,9 @@
     using System.Security.Permissions;
     using System.Threading;
     using System.Windows.Forms.Layout;
+    using System.Drawing.Imaging;
 
-using System.Drawing.Imaging;
-
+#pragma warning disable  CS1591
 
 namespace Nistec.Drawing
 {

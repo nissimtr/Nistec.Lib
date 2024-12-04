@@ -28,6 +28,7 @@ using System.Runtime;
 using System.Collections;
 using Nistec.Serialization;
 
+#pragma warning disable  CS1591
 
 namespace Nistec.IO
 {

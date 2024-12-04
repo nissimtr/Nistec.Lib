@@ -5,10 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+#pragma warning disable  CS1591
 
 namespace Nistec.Threading
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public enum DynamicWaitType
     {
         None = 0,
@@ -84,6 +87,8 @@ namespace Nistec.Threading
             }
         }
     */
+
+    /*
     class b_DynamicInterval
     {
         public b_DynamicInterval(int defaultWait = 1000, int minWait = 100, int largeWait = 5000, int maxThread = 1)
@@ -149,7 +154,10 @@ namespace Nistec.Threading
             return (int)IntervalWait;
         }
     }
-
+    */
+    /// <summary>
+    /// 
+    /// </summary>
     public class DynamicInterval
     {
         public DynamicInterval(int defaultWait = 1000, int maxWait = 10000, int maxThread = 1)
@@ -313,6 +321,9 @@ namespace Nistec.Threading
         //int synchronized;
         bool _Pause;
         int _PauseInterval=1000;
+        //bool lockWasTaken = false;
+        //static object _locker = new object();
+        //long delay;
 
         public void Start()
         {
@@ -402,24 +413,28 @@ namespace Nistec.Threading
         //    _PauseInterval = 1000 * ((intervalSeconds < 1) ? 60 : intervalSeconds);
         //    return _Pause;
         //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ack"></param>
+        /// <returns></returns>
         public int DynamicWaitAck(bool ack)
         {
             if (EnableResetEvent)
                 ResetEvent.Set();
-
             else if (EnableDynamicWait)
                 return DynamicWait.DynamicWaitAck(ack);
             return 0;
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public void EventSet()
         {
             if (EnableResetEvent)
                 ResetEvent.Set();
         }
 
-        bool lockWasTaken = false;
-        static object _locker = new object();
-        //long delay;
 
         //public void Delay(TimeSpan time)
         //{

@@ -36,6 +36,7 @@ using Nistec.IO;
 using Nistec.Generic;
 using System.Collections.Specialized;
 using Nistec.Runtime;
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {
@@ -1440,7 +1441,12 @@ namespace Nistec.Serialization
                 return entity;
             }
         }
-
+        /// <summary>
+        /// TryReadToAnyClass
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="readSerialType"></param>
+        /// <returns></returns>
         public bool TryReadToAnyClass(object entity, bool readSerialType)
         {
 
@@ -1486,7 +1492,7 @@ namespace Nistec.Serialization
         #region Collection<T>
 
         /// <summary>
-        ///  Writes a generic ICollection (such as an IList<T>) to the buffer.
+        ///  Writes a generic ICollection (such as an IList of T) to the buffer.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="c"></param>

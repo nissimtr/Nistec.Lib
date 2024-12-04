@@ -27,6 +27,8 @@ using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using Nistec.Runtime;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Generic
 {
     public interface IGenericArgs

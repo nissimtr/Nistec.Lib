@@ -26,7 +26,7 @@ using System.ComponentModel;
 using System.Collections;
 using System.Reflection;
 using Nistec.Runtime;
-
+#pragma warning disable  CS1591
 namespace Nistec
 {
     public enum ConvertDescriptor
@@ -476,6 +476,7 @@ namespace Nistec
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="o"></param>
+        /// <param name="enableException"></param>
         /// <returns></returns>
         public static T Cast<T>(object o, bool enableException =false)
         {

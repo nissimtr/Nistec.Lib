@@ -29,6 +29,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Nistec.Generic;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Collections
 {
     /// <summary>

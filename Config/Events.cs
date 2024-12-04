@@ -20,15 +20,17 @@
 //licHeader|
 using System;
 
+#pragma warning disable CS1591
+
 namespace Nistec.Config
 {	
 	
 	/// <summary>
-	///   EventArgs class to be passed as the second parameter of a <see cref="Config.Changed" /> event handler. </summary>
+	///   EventArgs class to be passed as the second parameter of a <see cref="Nistec.Config.ConfigChangedArgs" /> event handler. </summary>
 	/// <remarks>
 	///   This class provides all the information relevant to the change made to the Config.
 	///   It is also used as a convenient base class for the ConfigChangingArgs class which is passed 
-	///   as the second parameter of the <see cref="Config.Changing" /> event handler. </remarks>
+	///   as the second parameter of the <see cref="Nistec.Config.ConfigChangingArgs" /> event handler. </remarks>
 	/// <seealso cref="ConfigChangingArgs" />
 	public class ConfigChangedArgs : EventArgs
 	{   
@@ -45,7 +47,6 @@ namespace Nistec.Config
 		///   The name of the entry involved in the change, or if changeType is set to Other, the name of the method/property that was changed. </param>
 		/// <param name="value">
 		///   The new value for the entry or method/property, based on the value of changeType. </param>
-		/// <seealso cref="ConfigChangeType" />
 		public ConfigChangedArgs(string section, string entry, object value) 
 		{
 			m_section = section;
@@ -62,11 +63,11 @@ namespace Nistec.Config
 				return m_section;
 			}
 		}
-		
+
 		/// <summary>
 		///   Gets the name of the entry involved in the change, or null if not applicable. </summary>
 		/// <remarks> 
-		///   If <see cref="ChangeType" /> is set to Other, this property holds the name of the 
+		///   If ChangeType is set to Other, this property holds the name of the 
 		///   method/property that was changed. </remarks>
 		public string Entry
 		{
@@ -77,7 +78,7 @@ namespace Nistec.Config
 		}
 		
 		/// <summary>
-		///   Gets the new value for the entry or method/property, based on the value of <see cref="ChangeType" />. </summary>
+		///   Gets the new value for the entry or method/property, based on the value of ChangeType. </summary>
 		public object Value
 		{
 			get 
@@ -88,7 +89,7 @@ namespace Nistec.Config
 	}
 
 	/// <summary>
-	///   EventArgs class to be passed as the second parameter of a <see cref="Config.Changing" /> event handler. </summary>
+	///   EventArgs class to be passed as the second parameter of a <see cref="Nistec.Config.ConfigChangingArgs" /> event handler. </summary>
 	/// <remarks>
 	///   This class provides all the information relevant to the change about to be made to the Config.
 	///   Besides the properties of ConfigChangedArgs, it adds the Cancel property which allows the 
@@ -106,7 +107,6 @@ namespace Nistec.Config
 		///   The name of the entry involved in the change, or if changeType is set to Other, the name of the method/property that was changed. </param>
 		/// <param name="value">
 		///   The new value for the entry or method/property, based on the value of changeType. </param>
-		/// <seealso cref="ConfigChangeType" />
 		public ConfigChangingArgs(string section, string entry, object value) :
 			base(section, entry, value)
 		{
@@ -130,14 +130,14 @@ namespace Nistec.Config
 	}
    
 	/// <summary>
-	///   Definition of the <see cref="Config.Changing" /> event handler. </summary>
+	///   Definition of the <see cref="Nistec.Config.ConfigChangingArgs" /> event handler. </summary>
 	/// <remarks>
 	///   This definition complies with the .NET Framework's standard for event handlers.
 	///   The sender is always set to the Config object that raised the event. </remarks>
 	public delegate void ConfigChangingHandler(object sender, ConfigChangingArgs e);
 
 	/// <summary>
-	///   Definition of the <see cref="Config.Changed" /> event handler. </summary>
+	///   Definition of the <see cref="Nistec.Config.ConfigChangedArgs" /> event handler. </summary>
 	/// <remarks>
 	///   This definition complies with the .NET Framework's standard for event handlers.
 	///   The sender is always set to the Config object that raised the event. </remarks>

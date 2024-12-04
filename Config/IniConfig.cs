@@ -27,6 +27,8 @@ using System.Reflection;
 using System.IO;
 using System.Data;
 
+#pragma warning disable  CS1591
+
 namespace Nistec.Config
 {
 	/// <summary>
@@ -266,18 +268,18 @@ namespace Nistec.Config
 
             }
 
-            /// <summary>
-            ///   Retrieves a DataSet object containing every section, entry, and value in the Config. </summary>
-            /// <returns>
-            ///   If the Config exists, the return value is a DataSet object representing the Config; otherwise it's null. </returns>
-            /// <exception cref="InvalidOperationException">
-            ///	  <see cref="Config.Name" /> is null or empty. </exception>
-            /// <remarks>
-            ///   The returned DataSet will be named using the <see cref="Name" /> property.  
-            ///   It will contain one table for each section, and each entry will be represented by a column inside the table.
-            ///   Each table will contain only one row where the values will stored corresponding to each column (entry). 
-            ///</remarks>
-            public virtual DataSet ConfigToDataSet()
+        /// <summary>
+        ///   Retrieves a DataSet object containing every section, entry, and value in the Config. </summary>
+        /// <returns>
+        ///   If the Config exists, the return value is a DataSet object representing the Config; otherwise it's null. </returns>
+        /// <exception cref="InvalidOperationException">
+        ///	  Config.Name is null or empty. </exception>
+        /// <remarks>
+        ///   The returned DataSet will be named using the <see cref="Name" /> property.  
+        ///   It will contain one table for each section, and each entry will be represented by a column inside the table.
+        ///   Each table will contain only one row where the values will stored corresponding to each column (entry). 
+        ///</remarks>
+        public virtual DataSet ConfigToDataSet()
             {
                 VerifyName();
 
@@ -319,8 +321,8 @@ namespace Nistec.Config
             /// <param name="ds">
             ///   The DataSet object containing the data to be set. </param>
             /// <exception cref="InvalidOperationException">
-            ///   <see cref="Config.ReadOnly" /> is true or
-            ///   <see cref="Config.Name" /> is null or empty. </exception>
+            ///   Config.ReadOnly is true or
+            ///   Config.Name" is null or empty. </exception>
             /// <exception cref="ArgumentNullException">
             ///   ds is null. </exception>
             /// <remarks>
@@ -533,7 +535,7 @@ namespace Nistec.Config
 		/// <remarks>
 		///   For Windows apps, this property returns the name of the executable plus .ini ("program.exe.ini").
 		///   For Web apps, this property returns the full path of <i>web.ini</i> based on the root folder.
-		///   This property is used to set the <see cref="Config.Name" /> property inside the default constructor.</remarks>
+		///   This property is used to set the Config.Name property inside the default constructor.</remarks>
 		public string DefaultName
 		{
 			get
@@ -546,7 +548,6 @@ namespace Nistec.Config
 		///   Retrieves a copy of itself. </summary>
 		/// <returns>
 		///   The return value is a copy of itself as an object. </returns>
-		/// <seealso cref="Config.CloneReadOnly" />
 		public object Clone()
 		{
 			return new IniConfig(this);
@@ -709,14 +710,14 @@ namespace Nistec.Config
 			}
 		}
 
-		/// <summary>
-		///   Retrieves the names of all the sections. </summary>
-		/// <returns>
-		///   If the INI file exists, the return value is an array with the names of all the sections;
-		///   otherwise it's null. </returns>
-		/// <seealso cref="Config.HasSection" />
-		/// <seealso cref="GetEntryNames" />
-		public string[] GetSectionNames()
+        /// <summary>
+        ///   Retrieves the names of all the sections. </summary>
+        /// <returns>
+        ///   If the INI file exists, the return value is an array with the names of all the sections;
+        ///   otherwise it's null. </returns>
+        /// seealso Config.HasSection
+        /// seealso GetEntryNames />
+        public string[] GetSectionNames()
 		{
 			// Verify the file exists
 			if (!File.Exists(Name))

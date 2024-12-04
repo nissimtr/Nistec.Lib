@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.IO.Compression;
 using System.IO;
-
+#pragma warning disable  CS1591
 namespace Nistec.Generic
 {
   

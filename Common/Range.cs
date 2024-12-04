@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.Runtime.InteropServices;
-
+#pragma warning disable  CS1591
 namespace Nistec//.Data
 {
     [StructLayout(LayoutKind.Sequential)]

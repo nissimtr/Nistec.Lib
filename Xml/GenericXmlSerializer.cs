@@ -28,7 +28,7 @@ using System.Xml.Serialization;
 using System.Collections;
 using System.ComponentModel;
 using System.Xml.Schema;
-
+#pragma warning disable  CS1591
 namespace Nistec.Xml
 {
    

@@ -30,6 +30,7 @@ using System.Globalization;
 using System.Xml;
 using System.Security.Cryptography.Xml;
 using Nistec.Serialization;
+#pragma warning disable  CS1591
 
 namespace Nistec.Runtime
 {

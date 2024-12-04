@@ -33,6 +33,7 @@ using System.Xml;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
 using Nistec.IO;
+#pragma warning disable  CS1591
 
 namespace Nistec.Serialization
 {
@@ -461,6 +462,7 @@ namespace Nistec.Serialization
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return 0;
             }
         }
